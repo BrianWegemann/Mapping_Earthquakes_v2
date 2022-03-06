@@ -41,13 +41,14 @@ let torontoHoods = "https://raw.githubusercontent.com/BrianWegemann/Mapping_Eart
 d3.json(torontoHoods).then(function(data) {
   console.log(data);
   // Creating a GeoJSON layer with the retrieved data.
+  // Creating a GeoJSON layer with the retrieved data.
   L.geoJSON(data, {
-      color: 'blue',
-      weight: 1,
-      fillColor: 'yellow',
-      onEachFeature: function(feature, layer) {
-          layer.bindPopup("<h3> Neighborhood: " + feature.properties.AREA_NAME + "</h3>")
-      }
-    })
-    .addTo(map);
-});
+
+    // We turn each feature into a circleMarker on the map.
+    
+    pointToLayer: function(feature, latlng) {
+                console.log(data);
+                return L.circleMarker(latlng);
+            },
+        }).addTo(map);
+    });
