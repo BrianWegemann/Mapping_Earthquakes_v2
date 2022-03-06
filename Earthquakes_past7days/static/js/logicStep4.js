@@ -14,6 +14,13 @@ let satelliteStreets = L.tileLayer('https://api.mapbox.com/styles/v1/mapbox/sate
   accessToken: API_KEY
 });
 
+// Create the map object with center, zoom level and default layer.
+let map = L.map('mapid', {
+  center: [39.5, -98.5],
+  zoom: 3,
+  layers: [streets],
+});
+
 // Create a base layer that holds both maps.
 let baseMaps = {
   "Streets": streets,
@@ -33,12 +40,7 @@ let overlays = {
 // which layers are visible.
 L.control.layers(baseMaps, overlays).addTo(map);
 
-// Create the map object with center, zoom level and default layer.
-let map = L.map('mapid', {
-  center: [39.5, -98.5],
-  zoom: 3,
-  layers: [streets],
-});
+
 
 
 // Pass our map layers into our layers control and add the layers control to the map.
